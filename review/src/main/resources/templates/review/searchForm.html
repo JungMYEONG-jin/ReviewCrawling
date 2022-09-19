@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Import할 CSS 파일 (경로 주의) -->
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../static/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link th:href="@{/css/integrated-css.css}"
+          href="../static/css/integrated-css.css"
+          rel="stylesheet">
+    <title>리뷰 검색</title>
+    <style>
+        div.paging {
+            display: flex;
+            align-items: center; /* 수직 정렬 */
+            flex-direction: row; /* default: row */
+            justify-content: center; /* flex direction에 대해서 정렬방식 선택 */
+        }
+    </style>
+</head>
+
+<body>
+<div id="coverScreen"  class="LockOn">
+    <form th:action="@{/crawling/search}" th:object="${crawlingForm}" method="POST" style="display: flex; justify-content: flex-end; padding: 10px 0;">
+        <select th:field="*{appId}" class="form-select">
+        <option value="">==앱 선택==</option>
+        <option th:each="type : ${T(com.shinhan.review.crawler.AppList).values()}"
+                th:value="${type.getAppPkg()}"
+                th:text="${type.name()}">sbank
+        </option>
+    </select>
+        <select th:field="*{os}" class="form-select">
+        <option value="">==OS 선택==</option>
+        <option th:each="type : ${T(com.shinhan.review.crawler.OS).values()}"
+                th:value="${type.name()}"
+                th:text="${type.name()}">AND
+        </option>
+    </select>
+        <input type="submit" value="검색"/>
+    </form>
+
+    <div>
+        크롤러는 매일 새벽에 작동합니다... 수동 작동은 최대한 사용을 자제해 주세요. 크롤링할 리뷰가 많을수록 시간이 걸립니다.
+        조금만 기다려주세요..
+    </div>
+</div>
+</body>
+
+</html>
