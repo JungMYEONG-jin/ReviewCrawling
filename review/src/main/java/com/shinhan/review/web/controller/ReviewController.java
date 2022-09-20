@@ -62,12 +62,12 @@ public class ReviewController {
     }
 
 
-    @GetMapping("/reviews")
-    public String getReviewList(Model model, @PageableDefault(page=0, size = 10, direction = Sort.Direction.DESC)Pageable pageable){
-        Page<Review> reviews = reviewService.findAll(pageable);
-        model.addAttribute("reviews", reviews);
-        return "review/reviewList";
-    }
+//    @GetMapping("/reviews")
+//    public String getReviewList(Model model, @PageableDefault(page=0, size = 10, direction = Sort.Direction.DESC)Pageable pageable){
+//        Page<Review> reviews = reviewService.findAll(pageable);
+//        model.addAttribute("reviews", reviews);
+//        return "review/reviewList";
+//    }
 
     @GetMapping("/reviews/search")
     public String searchReviewListGet(Model model, @PageableDefault(page=0, size = 10, direction = Sort.Direction.DESC)Pageable pageable){

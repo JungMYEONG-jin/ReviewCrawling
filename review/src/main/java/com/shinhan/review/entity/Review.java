@@ -1,16 +1,16 @@
 package com.shinhan.review.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@IdClass(ReviewId.class)
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String appVersion;
+    @Id
     private String createdDate; // 리뷰 작성일
+    @Id
     private String nickname;
     private String rating;
     @Column(length = 4000)
@@ -25,8 +25,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long id, String appVersion, String createdDate, String nickname, String rating, String body, String responseBody, String answeredDate, String device, String appPkg, String osType) {
-        this.id = id;
+    public Review(String appVersion, String createdDate, String nickname, String rating, String body, String responseBody, String answeredDate, String device, String appPkg, String osType) {
         this.appVersion = appVersion;
         this.createdDate = createdDate;
         this.nickname = nickname;
@@ -37,10 +36,6 @@ public class Review {
         this.device = device;
         this.appPkg = appPkg;
         this.osType = osType;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getAppPkg() {
@@ -97,5 +92,18 @@ public class Review {
                 ", appPkg='" + appPkg + '\'' +
                 ", osType='" + osType + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return Objects.equals(appVersion, review.appVersion) && Objects.equals(createdDate, review.createdDate) && Objects.equals(nickname, review.nickname) && Objects.equals(rating, review.rating) && Objects.equals(body, review.body) && Objects.equals(responseBody, review.responseBody) && Objects.equals(answeredDate, review.answeredDate) && Objects.equals(device, review.device) && Objects.equals(appPkg, review.appPkg) && Objects.equals(osType, review.osType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(appVersion, createdDate, nickname, rating, body, responseBody, answeredDate, device, appPkg, osType);
     }
 }

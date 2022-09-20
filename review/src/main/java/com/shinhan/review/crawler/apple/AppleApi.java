@@ -374,7 +374,8 @@ public class AppleApi implements Crawler {
 
                     if (!attributes.containsKey("responseBody"))
                         attributes.put("responseBody", "");
-
+                    attributes.put("nickName", attributes.get("reviewerNickname").toString());
+                    attributes.remove("reviewerNickname");
                     attributes.put("device", "");
                     attributes.put("appVersion","");
                     result.add(attributes);

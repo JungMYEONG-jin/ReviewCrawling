@@ -4,7 +4,6 @@ import com.shinhan.review.entity.Review;
 import org.json.simple.JSONObject;
 
 public class ReviewDto {
-    private Long id;
     private String appVersion;
     private String createdDate; // 리뷰 작성일
     private String nickname;
@@ -17,7 +16,7 @@ public class ReviewDto {
     private String osType;
 
     public Review toEntity(){
-        return new Review(id, appVersion, createdDate, nickname, rating, body,responseBody, answeredDate, device, appPkg, osType);
+        return new Review(appVersion, createdDate, nickname, rating, body,responseBody, answeredDate, device, appPkg, osType);
     }
 
     public ReviewDto(JSONObject jsonObject){
@@ -64,14 +63,6 @@ public class ReviewDto {
 
     public void setOsType(String osType) {
         this.osType = osType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAppVersion() {

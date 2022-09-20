@@ -11,7 +11,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
                 <th>앱이름</th>
                 <th>앱버전</th>
                 <th>OS</th>
@@ -26,7 +25,6 @@
             </thead>
             <tbody>
             <tr th:each="review : ${reviews}">
-                <td th:text="${review.getId()}"></td>
                 <td th:text="${review.getAppPkg()}"></td>
                 <td th:text="${review.getAppVersion()}"></td>
                 <td th:text="${review.getOsType()}"></td>
